@@ -1,0 +1,14 @@
+---
+import Recorder from '@/components/Recorder'
+import Layout from '@/layouts/Layout.astro'
+---
+
+  <Layout title='Welcome to Astro.'>
+    <div class='pt-8'>
+      <div class='relative mx-auto flex flex-col'>
+        <div class='mt-10 flex gap-4'>
+          <Recorder client:only />
+        </div>
+      </div>
+    </div>
+  </Layout>

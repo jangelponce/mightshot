@@ -49,7 +49,6 @@ export default function RecordForm({ onSubmit, onLoad }: RecordFormProps) {
   });
 
   function handleSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     onSubmit(values);
   }
 

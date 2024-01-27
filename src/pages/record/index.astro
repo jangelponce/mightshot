@@ -1,20 +1,24 @@
 ---
-import RecordForm from '@/components/Record'
-import Layout from '@/layouts/Layout.astro'
+import RecordForm from '@/components/Record';
+import Layout from '@/layouts/Layout.astro';
 ---
 
-  <Layout title='Welcome to Astro.'>
-    <div class='pt-8'>
-      <div class='relative mx-auto flex flex-col'>
+<Layout title="Welcome to Astro.">
+  <div class="pt-8">
+    <div class="relative mx-auto flex flex-col">
+      <div
+        class="relative w-full overflow-hidden rounded-xl border border-slate-800 p-[1px] backdrop-blur-3xl transition-all duration-500"
+        transition:name="record form"
+      >
+        <span
+          class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
+        ></span>
         <div
-          class='relative w-full overflow-hidden rounded-xl border border-slate-800 p-[1px] backdrop-blur-3xl transition-all duration-500'
-          transition:name='record form'
+          class="inline-flex size-full items-center justify-center rounded-xl bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl"
         >
-          <span class='absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]' />
-          <div class='inline-flex h-full w-full items-center justify-center rounded-xl bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl'>
-            <RecordForm client:only />
-          </div>
+          <RecordForm client:only />
         </div>
       </div>
     </div>
-  </Layout>
+  </div>
+</Layout>

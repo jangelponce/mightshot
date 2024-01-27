@@ -1,6 +1,6 @@
 {
   // Configuration for JavaScript files
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "extends": ["airbnb-base", "plugin:prettier/recommended", "prettier"],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -133,7 +133,7 @@
         "import/no-unresolved": [
           "error",
           {
-            "ignore": ["@/*"]
+            "ignore": ["@/*", "astro:*"]
           }
         ], // Disable no-unresolved rule for .astro files
         "react/jsx-filename-extension": [1, { "extensions": [".astro"] }], // Accept jsx in astro files
@@ -156,7 +156,8 @@
         "unused-imports/no-unused-vars": [
           "error",
           { "argsIgnorePattern": "^_" }
-        ]
+        ],
+        "tailwindcss/no-custom-classname": "off" // False positive with mjs file
       },
       "globals": {
         "Astro": "readonly"

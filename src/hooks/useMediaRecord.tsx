@@ -6,6 +6,7 @@ type OnRecordingStoppedParams = {
 
 type UseMediaRecordProps = {
   mimeType: string;
+  fileName: string;
   onRecordingStopped?: (params: OnRecordingStoppedParams) => void;
 };
 
@@ -17,6 +18,7 @@ const constraints = {
 
 export default function useMediaRecord({
   mimeType,
+  fileName,
   onRecordingStopped = () => null,
 }: UseMediaRecordProps) {
   const [isRecording, setIsRecording] = useState(false);
@@ -44,17 +46,14 @@ export default function useMediaRecord({
     }
   }, [mediaStreamTrack]);
 
-  const downloadMedia = useCallback(
-    (fileName: string) => {
-      if (blobUrl) {
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = fileName;
-        a.click();
-      }
-    },
-    [blobUrl],
-  );
+  const downloadMedia = useCallback(() => {
+    if (blobUrl) {
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = fileName;
+      a.click();
+    }
+  }, [blobUrl]);
 
   const initMediaRecorder = async () => {
     displayMedia.current =
@@ -80,11 +79,20 @@ export default function useMediaRecord({
     mediaRecorder.current?.stop();
   }, [mediaRecorder]);
 
+  const cancelRecording = useCallback(() => {
+    if (displayMedia.current) {
+      displayMedia.current.getTracks().forEach((track) => track.stop());
+    }
+    setBlobUrl('');
+    setIsRecording(false);
+  }, [displayMedia]);
+
   return {
     blobUrl,
     displayMedia,
     isRecording,
     downloadMedia,
+    cancelRecording,
     mediaRecorder,
     mediaStreamTrack,
     startRecording,

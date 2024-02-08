@@ -7,9 +7,7 @@ export default function RecordStream({
 }) {
   return (
     <div>
-      <h1>Record Stream</h1>
       <video src={blobUrl} controls />
-      {blobUrl}
       {children}
     </div>
   );
